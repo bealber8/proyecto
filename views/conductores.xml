@@ -1,0 +1,72 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="transportes2.listaa_conductores">
+      <field name="name">Lista de conductores</field>
+      <field name="model">transportes2.conductores</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="dni"/>
+          <field name="telefono"/>
+          <field name="direccion"/>
+          <field name="salario"/>
+          <field name="fechaNacimiento"/>
+          <field name="horas_trabajo"/>
+          <field name="paquetes"/>
+          <field name="camiones_ids"/>
+        </tree>
+      </field>
+    </record>
+    
+    <!-- search view -->
+    <record model="ir.ui.view" id="transportes2.search">
+      <field name="name">Conductores</field>
+      <field name="model">transportes2.conductores</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="dni"/>
+          <group string="group_by">
+            <filter name="group_by_dni" string="Conductores" context="{'group_by':'name'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="transportes2.action_window_conductores">
+      <field name="name">Ventana de conductores</field>
+      <field name="res_model">transportes2.conductores</field>
+      <field name="view_mode">tree,form</field>
+    </record>  
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="transportes2.action_server">
+      <field name="name">transportes2 server</field>
+      <field name="model_id" ref="model_transportes2_transportes2"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Conductores" id="transportes2.conductores_menu" parent="transportes2.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Listado Conductores" id="transportes2.conductores_list" parent="transportes2.conductores_menu"
+              action="transportes2.action_window_conductores"/>
+   
+  </data>
+</odoo>

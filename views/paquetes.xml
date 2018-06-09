@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="transportes2.listaa_paquetes">
+      <field name="name">Lista de paquetes</field>
+      <field name="model">transportes2.paquetes</field>
+      <field name="arch" type="xml">
+        <tree string = "prueba" decoration-danger = "name&lt;1" decoration-info = "name&gt;0">
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="destinatario"/>
+          <field name="direccion"/>
+          <field name="fecha"/>
+          <field name="conductor_id"/>
+          <field name="tutor_id"/>
+        </tree>
+      </field>
+    </record>  
+
+    <!-- calendario de transportes -->
+    <record model="ir.ui.view" id="transportes2.calendar">
+      <field name="name">Calendario paquetes</field>
+      <field name="model">transportes2.paquetes</field>
+      <field name="arch" type="xml">
+        <calendar color="name" date_start="fecha" string="Paquetes">
+          <field name="name"/>
+          <field name="conductor_id"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!-- gráfico de transportes -->
+    <record model="ir.ui.view" id="transportes2.grafico">
+      <field name="name">Gráfico paquetes</field>
+      <field name="model">transportes2.paquetes</field>
+      <field name="arch" type="xml">
+        <graph string="Paquetes">
+          <field name="conductor_id" type="row"/>
+          <field name="fecha" type="col"/>
+        </graph>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="transportes2.action_window_paquetes">
+      <field name="name">Ventana de paquetes</field>
+      <field name="res_model">transportes2.paquetes</field>
+      <field name="view_mode">tree,form,calendar,graph</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="transportes2.action_server">
+      <field name="name">transportes2 server</field>
+      <field name="model_id" ref="model_transportes2_transportes2"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Transportes" id="transportes2.menu_root"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Paquetes" id="transportes2.paquetes_menu" parent="transportes2.menu_root"/>
+ 
+    <!-- actions -->
+    
+    <menuitem name="Listado Paquetes" id="transportes2.paquetes_list" parent="transportes2.paquetes_menu"
+              action="transportes2.action_window_paquetes"/>
+   
+  </data>
+</odoo>

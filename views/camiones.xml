@@ -1,0 +1,53 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="transportes2.listaa_camiones">
+      <field name="name">Lista de camiones</field>
+      <field name="model">transportes2.camiones</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="modelo"/>
+          <field name="potencia"/>
+          <field name="conductores_ids"/>
+        </tree>
+      </field>
+    </record>
+   
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="transportes2.action_window_camiones">
+      <field name="name">Ventana de camiones</field>
+      <field name="res_model">transportes2.camiones</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="transportes2.action_server">
+      <field name="name">transportes2 server</field>
+      <field name="model_id" ref="model_transportes2_transportes2"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- menu categories -->
+    
+    <menuitem name="Camiones" id="transportes2.camiones_menu" parent="transportes2.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Listado Camiones" id="transportes2.camiones_list" parent="transportes2.camiones_menu"
+              action="transportes2.action_window_camiones"/>
+   
+  </data>
+</odoo>
