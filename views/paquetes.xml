@@ -13,7 +13,6 @@
           <field name="direccion"/>
           <field name="fecha"/>
           <field name="conductor_id"/>
-          <field name="tutor_id"/>
         </tree>
       </field>
     </record>  

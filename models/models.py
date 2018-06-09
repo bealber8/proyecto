@@ -11,7 +11,6 @@ class Paquetes(models.Model):
     direccion = fields.Char(string="Dirección")
     fecha = fields.Date(string = "Fecha transporte")
     conductor_id = fields.Many2one('transportes2.conductores', string = "Conductor")
-    tutor_id = fields.Many2one('escuela.profesor', string= "Tutor")
 
 class Conductores(models.Model):
     _name = 'transportes2.conductores'
